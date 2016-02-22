@@ -25,5 +25,3 @@ function checkUpdates() {
         asm.doUpdate(info.version);
     }
 }
-
-//test
