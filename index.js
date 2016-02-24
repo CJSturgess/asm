@@ -2,7 +2,7 @@ var asm = require('asm');
 
 //Ask ASM to load. Should spit out a splash message with the version no.
 //Passing a param will tell it to say a different version no. (Good for debug builds.)
-asm.load("1.0.0-DEV");
+asm.load("CJ-DEV");
 
 //Grab info regarding this host THEN push it to var info.
 //If host not authorized, the program will exit.
@@ -61,7 +61,11 @@ rl.on('line', (cmd) => {
     if (cmd == "log") {
         asm.showLog();
     } else if (cmd == "console") {
-        asm.showConsole();
+        if (!asm.server.running) {
+            console.log("[console] Server is not running.".red);
+        } else {
+            asm.showConsole();
+        }
     } else if (cmd == "start") {
         if (!asm.server.running) {
             console.log("[start] Starting server...".green);
