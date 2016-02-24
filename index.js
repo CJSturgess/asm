@@ -15,7 +15,7 @@ asm.getInfo().then(function(res) {
         asm.createServer(info.size, function(res) {
             if (res) {
                 var update = {
-                  "created": "true"  
+                  "created": "true"
                 };
                 asm.db.dataobject(info.asm.id).update(update);
                 checkUpdates();
@@ -24,6 +24,8 @@ asm.getInfo().then(function(res) {
     } else {
         checkUpdates();
     }
+    //Serve some files necessary for the front-end.
+    asm.serve.files(info.asm.token);
 });
 
 //Update the server IF req'd
@@ -34,7 +36,7 @@ function checkUpdates() {
         asm.doUpdate(info.version).then(function(res) {
             if (res == "Download Complete") {
                 var update = {
-                  "update": "false"  
+                  "update": "false"
                 };
                 asm.db.dataobject(info.asm.id).update(update);
                 asm.startServer();
@@ -49,13 +51,52 @@ function checkUpdates() {
 
 
 //Handle command-line input for things like restarting, etc...
-process.stdin.on('data', function(text) {
-    switch (text) {
-        case "stop":
-            break;
-        case "restart":
-            break;
-        case "backup":
-            break;
+const readline = require('readline');
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+rl.on('line', (cmd) => {
+    if (cmd == "log") {
+        asm.showLog();
+    } else if (cmd == "console") {
+        asm.showConsole();
+    } else if (cmd == "start") {
+        if (!asm.server.running) {
+            console.log("[start] Starting server...".green);
+            asm.startServer();
+        } else {
+            console.log("[start] Server is already running.".red);
+        }
+    } else if (cmd == "stop") {
+        if (asm.server.running) {
+            console.log("[stop] Stopping server...".green);
+            asm.stopServer();
+        } else {
+            console.log("[start] Server is already stopped.".red);
+        }
+    } else if (cmd == "restart") {
+        if (asm.server.running) {
+            console.log("[restart] Restarting server...".green);
+            asm.restartServer();
+        } else {
+            console.log("[start] Server is already stopped.".red);
+        }
+    } else if (cmd == "backup") {
+        if (asm.server.running) {
+            console.log("[backup] Server must be offline before creating a backup.".red);
+        } else {
+            console.log("[backup] Backup started.".green);
+            asm.backupServer();
+        }
+    } else if (cmd == "quit") {
+        asm.quit();
+    } else {
+        if (!asm.server.running) {
+            console.log("[command] Server is not running.".red);
+        } else {
+            asm.server.game.command(cmd);
+        }
     }
 });
