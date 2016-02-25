@@ -33,8 +33,8 @@
  - Anything not listed is interpreted as a gameserver command, and as such is passed to the STDIN of the java proc.
  
 ###Web thingies
-##*SERVERIP:3000 THEN ENDPOINT*
-##*localhost:3000/serve/ops?token=xxxxx*
+###*SERVERIP:3000 THEN ENDPOINT*
+###*localhost:3000/serve/ops?token=xxxxx*
  - /serve/
    - banned-ips
    - banned-players
