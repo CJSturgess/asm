@@ -52,5 +52,7 @@
    - lists backups in JSON format
  - /backup/:id
    - downloads backup *:id* as *world-:id.tar.gz*
+   
+ - MUST INCLUDE *?token=* then token
  
 ##In Active Development!
