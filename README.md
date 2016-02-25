@@ -1,5 +1,5 @@
 #Anchor Server Manager
-###ASM - 1.0.0
+###ASM - 1.1.0 - ALPHA
 
  - Grabs info regarding it's host.
  - Confirms its permissions.
