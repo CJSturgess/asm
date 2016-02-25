@@ -1,5 +1,13 @@
 var asm = require('asm');
 
+//Get command-line args then log them
+process.argv.forEach(function (val, index, array) {
+  if (val == "hostname") {
+      console.log(require('os').hostname());
+      process.exit(0);
+  }
+});
+
 //Ask ASM to load. Should spit out a splash message with the version no.
 //Passing a param will tell it to say a different version no. (Good for debug builds.)
 asm.load();
