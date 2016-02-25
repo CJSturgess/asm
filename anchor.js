@@ -26,6 +26,7 @@ asm.getInfo().then(function(res) {
                   "created": "true"
                 };
                 asm.db.dataobject(info.asm.id).update(update);
+                asm.createRecord();
                 checkUpdates();
             }
         });
