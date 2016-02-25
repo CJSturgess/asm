@@ -11,7 +11,7 @@
  - Handles command-line input
  - Handles remote commands
  
-###Terminal Commands
+##Terminal Commands
  - log
    - Dumps latest.log to term.
  - console
@@ -32,7 +32,7 @@
    - EX: "send hello world" will show in game as "[AnchorHosting] hello world" (in red)
  - Anything not listed is interpreted as a gameserver command, and as such is passed to the STDIN of the java proc.
  
-###Web thingies
+##Web thingies
 ###*SERVERIP:3000 THEN ENDPOINT*
 ###*localhost:3000/serve/ops?token=xxxxx*
  - /serve/
