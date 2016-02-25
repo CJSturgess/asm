@@ -27,5 +27,9 @@
  - quit
    - "quit" safely shuts down the gameserver, then kills the asm proc.
    - "quit force" kills *everything* (java proc then asm proc)
+ - send
+   - supply a message after "send", and it will be passed as an admin msg to the gameserver.
+   - EX: "send hello world" will show in game as "[AnchorHosting] hello world" (in red)
+ - Anything not listed is interpreted as a gameserver command, and as such is passed to the STDIN of the java proc.
  
 ##In Active Development!
