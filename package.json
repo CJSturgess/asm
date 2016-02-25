@@ -2,7 +2,7 @@
   "name": "anchor",
   "version": "1.1.0-ALPHA",
   "description": "Manages game servers for Anchor Hosting.",
-  "main": "index.js",
+  "main": "anchor.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
