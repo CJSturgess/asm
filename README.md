@@ -3,9 +3,12 @@
 
  - Grabs info regarding it's host.
  - Confirms its permissions.
+ - Creates a one-time token.
+ - Hosts endpoints, files, and backups
  - Checks for updates.
  - Updates if necessary.
  - Starts gameserver.
- - Hosts logs, etc on port 3000.
+ - Handles command-line input
+ - Handles remote commands
  
 ##In Active Development!
