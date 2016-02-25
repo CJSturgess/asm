@@ -32,4 +32,25 @@
    - EX: "send hello world" will show in game as "[AnchorHosting] hello world" (in red)
  - Anything not listed is interpreted as a gameserver command, and as such is passed to the STDIN of the java proc.
  
+###Web thingies
+ - /serve/
+   - banned-ips
+   - banned-players
+   - ops
+   - server-properties
+   - whitelist
+   - log
+ - /func/
+   - start
+   - stop
+   - restart
+   - backup
+ - /func/command/:arg
+   - requires argument after "command/"
+   - for example, */func/command/say hi*
+ - /backups
+   - lists backups in JSON format
+ - /backup/:id
+   - downloads backup *:id* as *world-_:id_.tar.gz*
+ 
 ##In Active Development!
