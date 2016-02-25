@@ -2,7 +2,7 @@ var asm = require('asm');
 
 //Ask ASM to load. Should spit out a splash message with the version no.
 //Passing a param will tell it to say a different version no. (Good for debug builds.)
-asm.load("CJ-DEV");
+asm.load();
 
 //Grab info regarding this host THEN push it to var info.
 //If host not authorized, the program will exit.
@@ -24,8 +24,23 @@ asm.getInfo().then(function(res) {
     } else {
         checkUpdates();
     }
-    //Serve some files necessary for the front-end.
-    asm.serve.files(info.asm.token);
+    
+    //Start serving all the things! :D
+    //Start by serving all of the files.
+    //Params: token
+    asm.serve.files(info.asm.token).then(function(app) {
+        //Then start serving the endpoints.
+        //Params: token, app instance
+        asm.serve.endpoints(info.asm.token, app).then(function(app) {
+            //Then start serving backups.
+            //Params: token, app instance
+            asm.serve.backups(info.asm.token, app).then(function(app) {
+                //Then finally, start listening.
+                //Params: port, app instance, token
+                asm.serve.startListening(null, app, info.asm.token);
+            });
+        });
+    });
 });
 
 //Update the server IF req'd
@@ -94,8 +109,20 @@ rl.on('line', (cmd) => {
             console.log("[backup] Backup started.".green);
             asm.backupServer();
         }
-    } else if (cmd == "quit") {
-        asm.quit();
+    } else if (cmd.split(' ')[0] == "send") {
+        var startMsg = cmd.split(' ');
+        startMsg.shift();
+        var adminMsg = startMsg.toString().replace(/,/g, ' ');
+        asm.adminSay(adminMsg);
+    } else if (cmd == "quit" || cmd.split(' ')[0] == "quit") {
+        var arg = cmd.split(' ')[1];
+        if (arg == "force") {
+            //true = force shutdown
+            asm.quit(true);
+        } else {
+            //false = DO NOT force shutdown
+            asm.quit(false);
+        }
     } else {
         if (!asm.server.running) {
             console.log("[command] Server is not running.".red);
