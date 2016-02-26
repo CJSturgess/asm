@@ -10,7 +10,7 @@
 ### END INIT INFO
 
 dir="/home/anchor/asm"
-cmd="git pull && node anchor"
+cmd="git pull & node anchor"
 user="anchor"
 
 name=`basename $0`
