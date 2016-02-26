@@ -10,7 +10,7 @@
 ### END INIT INFO
 
 dir="/home/anchor/asm"
-cmd="git pull; node anchor"
+cmd="node anchor"
 user="anchor"
 
 name=`basename $0`
@@ -34,8 +34,10 @@ case "$1" in
         echo "Starting $name"
         cd "$dir"
         if [ -z "$user" ]; then
+            sudo "git pull" >> "$stdout_log" 2>> "$stderr_log" &
             sudo $cmd >> "$stdout_log" 2>> "$stderr_log" &
         else
+            sudo -u "$user" "git pull" >> "$stdout_log" 2>> "$stderr_log" &
             sudo -u "$user" $cmd >> "$stdout_log" 2>> "$stderr_log" &
         fi
         echo $! > "$pid_file"
