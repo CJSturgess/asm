@@ -8,6 +8,6 @@ else
     cd /home/anchor/asm
     rm anchor.sh
     git pull
-    chmod +x anchor.sh
+    chmod +x ./anchor.sh
     node anchor
 fi
