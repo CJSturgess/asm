@@ -6,8 +6,8 @@ if [ $HOSTNAME = "vultr.guest" ]; then
     reboot now
 else
     cd /home/anchor/asm
-    rm anchor.sh
-    git pull
+    git fetch --all
+    git reset --hard origin/master
     chmod +x ./anchor.sh
     node anchor
 fi
