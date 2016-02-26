@@ -1,5 +1,5 @@
 #!/bin/bash
-if ["$HOSTNAME" = "vultr.guest"]; then
+if [$HOSTNAME = "vultr.guest"]; then
     echo "Yes"
 else
     echo "No"
