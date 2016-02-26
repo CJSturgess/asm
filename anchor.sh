@@ -33,11 +33,10 @@ case "$1" in
     else
         echo "Starting $name"
         cd "$dir"
+        git pull
         if [ -z "$user" ]; then
-            sudo "git pull" >> "$stdout_log" 2>> "$stderr_log" &
             sudo $cmd >> "$stdout_log" 2>> "$stderr_log" &
         else
-            sudo -u "$user" "git pull" >> "$stdout_log" 2>> "$stderr_log" &
             sudo -u "$user" $cmd >> "$stdout_log" 2>> "$stderr_log" &
         fi
         echo $! > "$pid_file"
