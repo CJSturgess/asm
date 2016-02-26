@@ -10,7 +10,7 @@
 ### END INIT INFO
 
 dir="/home/anchor/asm"
-cmd="git remote update && node anchor"
+cmd="git && node anchor"
 user="anchor"
 
 name=`basename $0`
